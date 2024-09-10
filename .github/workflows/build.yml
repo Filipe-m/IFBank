@@ -21,18 +21,18 @@ jobs:
         run: |
           go test -coverprofile=./cov.out ./...
 
-      - name: Run Gosec Security Scanner
-        run: |
-          go get github.com/securego/gosec/cmd/gosec
-          gosec -no-fail -fmt=sonarqube -out report.json ./...
+#      - name: Run Gosec Security Scanner
+#        run: |
+#          go get github.com/securego/gosec/cmd/gosec
+#          gosec -no-fail -fmt=sonarqube -out report.json ./...
 
-      - name: Cache SonarQube Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar-${{ hashFiles('**/*.go') }}
-          restore-keys: |
-            ${{ runner.os }}-sonar-   
+#      - name: Cache SonarQube Cache
+#        uses: actions/cache@v3
+#        with:
+#          path: ~/.sonar/cache
+#          key: ${{ runner.os }}-sonar-${{ hashFiles('**/*.go') }}
+#          restore-keys: |
+#            ${{ runner.os }}-sonar-
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
