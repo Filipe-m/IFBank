@@ -14,7 +14,7 @@ services:
   account-app:
     build:
       context: ../../src/account/
-      dockerfile: Dockerfile
+      dockerfile: ../../Dockerfile
     image: account
     environment:
       - POSTGRES_HOST=account-db
