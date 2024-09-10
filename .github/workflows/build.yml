@@ -17,10 +17,14 @@ jobs:
         with:
           go-version: 1.21
 
-      - name: Run Tests
+      - name: Run unit Tests
         run: |
-          go test  ./... -json > report.json
-          go test ./... -coverprofile=coverage.out
+          go test -coverprofile=./cov.out ./...
+
+      - name: Run Gosec Security Scanner
+        run: |
+          go get github.com/securego/gosec/cmd/gosec
+          gosec -no-fail -fmt=sonarqube -out report.json ./...
 
       - name: Cache SonarQube Cache
         uses: actions/cache@v3
