@@ -13,8 +13,8 @@ services:
 
   account-app:
     build:
-      context: ../../src/account/
-      dockerfile: ../../Dockerfile
+      context: ../..
+      dockerfile: Dockerfile
     image: account
     environment:
       - POSTGRES_HOST=account-db
@@ -26,6 +26,6 @@ services:
       - POSTGRES_TIMEZONE=America/Sao_Paulo
     restart: unless-stopped
     ports:
-      - "9091:9091"
+      - "7091:9091"
     depends_on:
       - account-db

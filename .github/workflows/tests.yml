@@ -31,3 +31,35 @@ jobs:
         run: |
           go mod download         
           go test -p 1 -count=1 ./...
+
+  integration:
+    runs-on: ubuntu-latest
+    name: Integration Tests
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v4
+
+      - name: Set up Go 1.21
+        uses: actions/setup-go@v5
+        with:
+          go-version: 1.21
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Start containers
+        working-directory: docker/deployment
+        run: docker compose up -d  
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          build: npx cypress info
+          working-directory: .
+
+      - name: Stop containers
+        working-directory: docker/deployment
+        run: docker compose down            
