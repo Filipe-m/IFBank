@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - monolito
       - release/*
   pull_request_target:
   merge_group:
