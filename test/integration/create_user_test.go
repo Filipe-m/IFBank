@@ -14,7 +14,7 @@ import (
 func TestCreateUserIntegration(t *testing.T) {
 
 	username := fmt.Sprintf("example_user_%s", uuid.New().String())
-	email := fmt.Sprintf("user_%s@example.com", uuid.New().String())
+	email := fmt.Sprintf("user_%s@exampl.com", uuid.New().String())
 
 	body := map[string]string{
 		"username": username,
