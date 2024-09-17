@@ -1,8 +1,13 @@
 name: Tests
+
 on:
   push:
     branches:
       - monolito
+      - release/*
+  pull_request_target:
+  merge_group:
+    branches: [main]
 jobs:
   sonarcloud:
     name: SonarCloud

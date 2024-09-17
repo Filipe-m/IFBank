@@ -22,11 +22,6 @@ jobs:
         with:
           go-version: 1.21
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-
       - name: Run account tests
         run: |
           go mod download         
